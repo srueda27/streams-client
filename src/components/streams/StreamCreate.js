@@ -1,7 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 
+import { createStream } from '../../actions'
+
 class StreamCreate extends React.Component {
+  //The parameters get here under the formProps var
   renderInput = ({ input, label, meta }) => {
     const className = `field ${meta.touched && meta.error ? 'error' : ''}`
     return (
@@ -13,11 +17,11 @@ class StreamCreate extends React.Component {
     );
   }
 
-  renderError = (meta) => {
-    if (meta.touched && meta.error) {
+  renderError = ({ touched, error }) => {
+    if (touched && error) {
       return (
         <div className="ui error message">
-          <div className="header">{meta.error}</div>
+          <div className="header">{error}</div>
         </div>
       );
     }
@@ -27,7 +31,7 @@ class StreamCreate extends React.Component {
 
   //the submit values from the Fields get into the method as parameters (the name is of the parameter can be anything)
   onSubmit(values) {
-    console.log('values: ', values)
+    this.props.createStream(values)
   }
 
   render() {
@@ -41,6 +45,7 @@ class StreamCreate extends React.Component {
   }
 }
 
+//Both method and parameter must be those names
 const validate = (formValues) => {
   const errors = {}
   if (!formValues.title) {
@@ -54,8 +59,11 @@ const validate = (formValues) => {
   return errors;
 }
 
-//Similar to mapStateToProps connect, map the redux store to state
-export default reduxForm({
+//reduxForm is similar to mapStateToProps connect, map the redux store to state
+const reduxFormWrapped = reduxForm({
   form: 'streamCreate',
   validate
-})(StreamCreate)
+})(StreamCreate);
+
+//This is a way to connect both redux-form and react-redux
+export default connect(null, { createStream })(reduxFormWrapped);
