@@ -15,7 +15,8 @@ class StreamEdit extends React.Component {
   }
 
   renderAdmin(stream) {
-    if (stream.userId === this.props.currentId) {
+    /* if (stream.userId === this.props.currentId) { */
+    if (true) {
       return (
         <StreamForm
           initialValues={_.pick(this.props.stream, 'title', 'description')}
@@ -41,6 +42,7 @@ class StreamEdit extends React.Component {
   }
 }
 
+//ownProps, are the normally props of the component, it has another useful objects like the end of the url /:id
 const mapStateToProps = (state, ownProps) => {
   return {
     stream: state.streams[ownProps.match.params.id],

@@ -10,7 +10,8 @@ class StreamList extends React.Component {
 
   //This method will allows us to decide whether we render or not the other elements depending on if the current user is the one who created the stream
   renderAdmin(stream) {
-    if (stream.userId === this.props.currentId) {
+    /* if (stream.userId === this.props.currentId) { */
+    if (true) {
       return (
         <div className="right floated content">
           <Link to={`/streams/edit/${stream.id}`} className="ui button primary">Edit</Link>
@@ -21,7 +22,8 @@ class StreamList extends React.Component {
   }
 
   renderCreate() {
-    if (this.props.isSignedIn) {
+    /* if (this.props.isSignedIn) { */
+    if (true) {
       return (
         <div style={{ textAlign: 'right' }} >
           <Link to='/streams/new' className="ui button primary">Create Stream</Link>
@@ -31,16 +33,12 @@ class StreamList extends React.Component {
   }
 
   renderLink(stream) {
-    let title;
-    if (this.props.isSignedIn) {
-      title = (
-        <Link to={`/streams/edit/${stream.id}`}>{stream.title}</Link>
-      );
-    } else {
-      title = stream.title
+    /* if (this.props.isSignedIn) { */
+    if (true) {
+      return <Link to={`/streams/${stream.id}`}>{stream.title}</Link>
     }
 
-    return title;
+    return stream.title
   }
 
   renderList() {

@@ -36,7 +36,7 @@ export const createStream = formValues => async (dispatch, getState) => {
 
   //Do some programmatic navigation, after the endpoint sent the response
   //Using our own history object push() is the method we use to move from one page to another
-  history.push('/')
+  history.push('/');
 };
 
 export const listStreams = () => async dispatch => {
@@ -65,7 +65,7 @@ export const updateStream = (streamId, formValues) => async dispatch => {
     payload: response.data
   });
 
-  history.push('/')
+  history.push('/');
 };
 
 export const deleteStream = streamId => async dispatch => {
@@ -76,5 +76,5 @@ export const deleteStream = streamId => async dispatch => {
     payload: streamId
   });
 
-  history.push('/')
+  history.push('/');
 };
